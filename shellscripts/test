@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eu
+cd `dirname $0`
+sfdx force:apex:test:run -n $1 -r human $2

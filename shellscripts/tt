@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -eu
+cd `dirname $0`
+echo "$0"
+echo `pwd`
+if [ $# = 1 ]; then
+    sfdx force:apex:test:run -n $1 -r tap
+elif [ $# = 2 ]; then
+    sfdx force:apex:test:run -n $1 -r tap $2
+else
+    exit 1
+fi

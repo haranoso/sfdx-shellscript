@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+cd `dirname $0`
+
+set -eu
+if [ $# = 1 ]; then
+    ./tt $1 > ./result; cat ./result 
+elif [ $# = 2 ]; then
+    ./tt $1 $2 > ./result; cat ./result 
+else
+    exit 1
+fi
+

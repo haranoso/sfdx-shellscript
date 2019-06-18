@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eu
+cd `dirname $0`
+sfdx force:data:soql:query -r csv -q $1 
