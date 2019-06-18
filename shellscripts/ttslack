@@ -1,12 +1,14 @@
 #!/bin/bash
 set -eu
-cd `dirname $0`
+# メッセージを一時保存する場所
+MESSAGEFILE=$(mktemp -t webhooksXXXX)
+# 終了時に削除
+trap "rm ${MESSAGEFILE}" 0
 
-set -eu
 if [ $# = 1 ]; then
-    ./tt $1 > ./result; cat ./result 
+    tt $1 > ${MESSAGEFILE}; cat ${MESSAGEFILE} | sendmsg 
 elif [ $# = 2 ]; then
-    ./tt $1 $2 > ./result; cat ./result 
+    tt $1 $2 > ${MESSAGEFILE}; cat ${MESSAGEFILE} | sendmsg
 else
     exit 1
 fi

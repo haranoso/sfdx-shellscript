@@ -2,12 +2,6 @@
 
 set -eu
 
-# メッセージを一時保存する場所
-MESSAGEFILE=$(mktemp -t webhooksXXXX)
-# 終了時に削除
-trap "rm ${MESSAGEFILE}" 0
-
-
 # パイプの有無
 if [ -p /dev/stdin ]; then
     # 改行コードを変換して格納
@@ -28,12 +22,6 @@ BOTNAME=${BOTNAME:-'test-bot'}
 EMOJI=${EMOJI:-':sushi:'}
 # 見出し
 HEAD=${HEAD:-"midashi\n"}
-
-# メッセージをシンタックスハイライト付きで取得
-#MESSAGE='```'`cat ${MESSAGEFILE}`'```'
-# MESSAGE=`cat ${MESSAGEFILE}`
-
-
 
 # json形式に整形
 payload="payload={
