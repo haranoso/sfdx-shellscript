@@ -1,4 +1,5 @@
 #!/bin/bash
 
 set -eu
-sfdx force:data:soql:query -r csv -q $1 
+echo "$1"
+sfdx force:data:soql:query -r csv -q "$1" 
