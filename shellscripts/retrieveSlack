@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -eu
+echo "start retrieve" | sendmsg
+retrieve
+echo "end retrieve" | sendmsg
+
