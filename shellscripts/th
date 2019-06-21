@@ -2,7 +2,7 @@
 
 set -eu
 if [ $# = 1 ]; then
-    sfdx force:apex:test:run -n $1 -r tap
+    sfdx force:apex:test:run -n $1 -r human
 elif [ $# = 2 ]; then
     sfdx force:apex:test:run -n $1 -r human $2
 else

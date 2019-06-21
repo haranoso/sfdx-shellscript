@@ -2,9 +2,9 @@
 set -eu
 
 if [ $# = 1 ]; then
-    tt $1 | sendmsg 
+    th $1 | sendmsg 
 elif [ $# = 2 ]; then
-    tt $1 $2 | sendmsg
+    th $1 $2 | sendmsg
 else
     exit 1
 fi
