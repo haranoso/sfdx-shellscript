@@ -1,5 +1,19 @@
 #!/bin/bash
 
+#slack.confの中身###ここから
+# WebHookのURL
+# URL='https://hooks.slack.com/services/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'
+# 送信先のチャンネル
+# CHANNEL=${CHANNEL:-'#app_test'}
+# botの名前
+# BOTNAME=${BOTNAME:-'test-bot'}
+# 絵文字
+# EMOJI=${EMOJI:-':sushi:'}
+# 見出し
+# HEAD=${HEAD:-"midashi\n"}
+###ここまで
+. ./slack.conf
+
 set -eu
 
 # パイプの有無
@@ -11,16 +25,6 @@ else
 	exit 1
 fi
 
-# WebHookのURL
-URL='https://hooks.slack.com/services/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'
-# 送信先のチャンネル
-CHANNEL=${CHANNEL:-'#app_test'}
-# botの名前
-BOTNAME=${BOTNAME:-'test-bot'}
-# 絵文字
-EMOJI=${EMOJI:-':sushi:'}
-# 見出し
-HEAD=${HEAD:-"midashi\n"}
 
 # json形式に整形
 payload="payload={
