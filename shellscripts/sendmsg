@@ -1,8 +1,9 @@
 #!/bin/bash
 
-#slack.confの中身###ここから
+#####slack.confの中身
+#####ここから#####
 # WebHookのURL
-# URL='https://hooks.slack.com/services/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'
+# URL='https://hooks.slack.com/services/XXXXXXXXXXXXX'
 # 送信先のチャンネル
 # CHANNEL=${CHANNEL:-'#app_test'}
 # botの名前
@@ -11,8 +12,8 @@
 # EMOJI=${EMOJI:-':sushi:'}
 # 見出し
 # HEAD=${HEAD:-"midashi\n"}
-###ここまで
-. ./slack.conf
+#####ここまで#####
+. slack.conf
 
 set -eu
 
