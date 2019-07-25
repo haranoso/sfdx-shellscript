@@ -1,4 +1,4 @@
 #!/bin/bash
 
 set -eu
-find ./force-app/main/default/classes/*.cls -mmin -$1 | xargs -n1 sfdx force:source:deploy --sourcepath
+sfdx force:apex:log:list |tail -1 |awk '{print $3}' | xargs -n1 sfdx force:apex:log:get --logid 

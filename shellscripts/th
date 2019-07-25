@@ -2,9 +2,9 @@
 
 set -eu
 if [ $# = 1 ]; then
-    sfdx force:apex:test:run -n $1 -r human
+    sfdx force:apex:test:run -w 60 -n $1 -r human
 elif [ $# = 2 ]; then
-    sfdx force:apex:test:run -n $1 -r human $2
+    sfdx force:apex:test:run -w 60 -n $1 -r human $2
 else
     exit 1
 fi
