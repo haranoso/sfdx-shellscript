@@ -1,4 +1,6 @@
 #!/bin/bash
 
 set -eu
+date
 sfdx force:apex:log:list |tail -1 |awk '{print $3}' | xargs -n1 sfdx force:apex:log:get --logid 
+date
