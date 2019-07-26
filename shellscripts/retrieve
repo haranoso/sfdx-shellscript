@@ -1,4 +1,6 @@
 #!/bin/bash
 
 set -eu
+date
 sfdx force:source:retrieve --manifest ./manifest/package.xml
+date
