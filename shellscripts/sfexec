@@ -1,0 +1,5 @@
+
+set -eu
+echo "`date`------------------------------------------"
+
+sfdx force:apex:execute --apexcodefile $1
