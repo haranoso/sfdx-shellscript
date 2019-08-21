@@ -3,8 +3,6 @@
 set -eu
 date
 
-dir=$(cd $(dirname $0); pwd)
-from=$dir/apex/getObjectAPIName
 to=$(mktemp)
 function rm_tmpfile {
   [[ -f "$tmpfile" ]] && rm -f "$tmpfile"
@@ -14,8 +12,9 @@ trap rm_tmpfile EXIT
 # 異常終了したとき
 trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
 
+dir=$(cd $(dirname $0); pwd)
+from=$dir/apex/getObjectAPIName
 
-echo $from
-cat $from |sed -e 's/__OBJECT_NAME__/$1/g' > $to
-sfdx force:data:apex:execute --apexcodefile $to
+cat $from |sed -e "s/__OBJECT_NAME__/$1/g" > $to
+sfdx force:apex:execute --apexcodefile $to |grep DEBUG | sed -e 's/.*|DEBUG|//g'
 
