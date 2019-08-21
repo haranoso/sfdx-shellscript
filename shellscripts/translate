@@ -1,0 +1,20 @@
+#!/bin/bash
+
+URL='https://script.google.com/macros/s/AKfycbylSW6Y00bXLASwm7VHWsEHzx6IuN6gPPRZwLT1EH92nDi5aoOm/exec'
+set -eu
+
+# パイプecho の有無
+if [ -p /dev/stdin ]; then
+	MESSAGE=`cat - | sed s/\"/\'/g`
+	echo "$MESSAGE"
+else
+	echo "nothing stdin"
+	exit 1
+fi
+
+
+# json形式に整形
+payload="'{\"message\":\"$MESSAGE\"}'"
+
+# 送信
+curl -X GET -Ss ${URL}?text="this is apen."&source=en&target=jp
