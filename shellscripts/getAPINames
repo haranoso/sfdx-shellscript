@@ -5,7 +5,7 @@ date
 
 to=$(mktemp)
 function rm_tmpfile {
-  [[ -f "$tmpfile" ]] && rm -f "$tmpfile"
+  [[ -f "$to" ]] && rm -f "$to"
 }
 # 正常終了したとき
 trap rm_tmpfile EXIT
