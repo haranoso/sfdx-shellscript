@@ -1,8 +1,4 @@
 #!/bin/bash
 
 set -eu
-date
-
-echo "$1"
 sfdx force:data:soql:query -r csv -q "$1" 
-date
