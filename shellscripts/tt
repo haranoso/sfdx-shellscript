@@ -2,12 +2,5 @@
 
 set -eu
 date
-
-if [ $# = 1 ]; then
     sfdx force:apex:test:run -w 60 -n $1 -r tap
-elif [ $# = 2 ]; then
-    sfdx force:apex:test:run -w 60 -n $1 -r tap $2
-else
-    exit 1
-fi
 date
