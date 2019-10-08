@@ -1,6 +1,6 @@
-#!/bin/bash
+find#!/bin/bash
 
 set -eu
 date
-sfdx force:apex:log:list |tail -1 |awk '{print $3}' | xargs -n1 sfdx force:apex:log:get --logid 
+find $1 -type f -mmin -$2 | xargs -n1 sfdx force:sorce:deploy --soourcepath
 date
