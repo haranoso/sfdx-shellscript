@@ -3,4 +3,4 @@
 set -eu
 echo "start sfdx force:apex:log:tail | grep -e "FATAL" -e ": line""
 echo "`date`------------------------------------------"
-while : ;do sfdx force:apex:log:tail | grep -e "FATAL" -e ": line";done
+while : ;do sfdx force:apex:log:tail | grep -e "FATAL" -e ": line" --color=auto;done

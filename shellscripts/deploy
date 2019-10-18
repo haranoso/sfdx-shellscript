@@ -1,6 +1,9 @@
-find#!/bin/bash
+#!/bin/bash
 
+echo $1
+echo $2
 set -eu
 date
-find $1 -type f -mmin -$2 | xargs -n1 sfdx force:sorce:deploy --soourcepath
+find $2 -type f -mmin -$1
+echo "xargs -t -I{}  sfdx force:source:deploy --sourcepath {}"
 date

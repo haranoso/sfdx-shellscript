@@ -3,4 +3,4 @@
 set -eu
 echo "start sfdx force:apex:log:tail DEBUG"
 echo "`date`------------------------------------------"
-while : ;do sfdx force:apex:log:tail |grep DEBUG ;done
+while : ;do sfdx force:apex:log:tail |grep DEBUG --color=auto;done
