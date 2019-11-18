@@ -1,7 +1,8 @@
 #!/bin/bash
-
 set -eu
-echo "start retrieve" | sendmsg
+
+ENV=`sfEI`
+echo "start retrieve" | sendmsg $ENV
 retrieve
-echo "end retrieve" | sendmsg
+echo "end retrieve" | sendmsg $ENV
 

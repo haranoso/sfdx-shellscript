@@ -1,6 +1,4 @@
 #!/bin/bash
 
 set -eu
-date
 find $2$3 -type f -mmin -$1 |xargs -t -I{}  sfdx force:source:deploy --sourcepath {}
-date

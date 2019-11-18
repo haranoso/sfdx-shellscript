@@ -1,41 +1,55 @@
 #!/bin/bash
 
-#####slack.confの中身
+#####slack.confの中身実行フォルダにCONFを配置する。
 #####ここから#####
 # WebHookのURL
 # URL='https://hooks.slack.com/services/XXXXXXXXXXXXX'
 # 送信先のチャンネル
 # CHANNEL=${CHANNEL:-'#app_test'}
-# botの名前
-# BOTNAME=${BOTNAME:-'test-bot'}
 # 絵文字
 # EMOJI=${EMOJI:-':sushi:'}
 # 見出し
 # HEAD=${HEAD:-"midashi\n"}
 #####ここまで#####
-. slack.conf
+. ./slack.conf
 
 set -eu
 
+if [ $# -ne 2 ]; then
+	UNAME="BOT"
+else
+	UNAME="[ $1 ] $2 "
+fi
+
 # パイプの有無
 if [ -p /dev/stdin ]; then
-	MESSAGE=`cat - | sed s/\"/\'/g`
-	echo "$MESSAGE"
+	MESSAGE=`cat - `
+	MESSAGE1=`echo $MESSAGE`
+	MESSAGE2=`echo $MESSAGE1 | sed -e "s/\\\//\\\\\\\\/g"`
+	MESSAGE3=`echo $MESSAGE2 | sed -e "s/\"/\'/g"`
+	MESSAGE=`echo $MESSAGE3 | sed -e "s/\\\\/\\\\\\\\/g"`
+	echo $MESSAGE
+	# ESCAPE=`printf %q "$MESSAGE"`
+	# echo $ESCAPE
 else
 	echo "nothing stdin"
 	exit 1
 fi
 
-
 # json形式に整形
 payload="payload={
 	\"channel\": \"${CHANNEL}\",
-	\"username\": \"${BOTNAME}\",
+	\"username\": \"$UNAME\",
 	\"icon_emoji\": \"${EMOJI}\",
-	\"attachments\":[
-		{\"text\": \"$MESSAGE\"}
-	]
+	\"text\": \"$MESSAGE\",
+	\"fallbcack\": \"$UNAMEがツイートしました。\"
+	,\"attachments\":[{\"text\":\"\"}]
 }"
 
+tmpfile=$(mktemp)
+echo $payload >> $tmpfile
+cat $tmpfile > ./tmp.json
+
 # 送信
-curl -s -S -X POST --data-urlencode "${payload}" ${URL} > /dev/null
+curl -s -S -X POST -d @$tmpfile ${URL}
+rm $tmpfile

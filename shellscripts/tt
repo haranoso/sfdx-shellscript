@@ -1,6 +1,4 @@
 #!/bin/bash
 
 set -eu
-date
-    sfdx force:apex:test:run -w 60 -n $1 -r tap
-date
+sfdx force:apex:test:run -w 60 -n $1 -r tap

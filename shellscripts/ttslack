@@ -1,5 +1,5 @@
 #!/bin/bash
 set -eu
-
-   tt $1 | sendmsg 
+ENV=`sfEI`
+tt $1 | sendmsg $ENV
 
