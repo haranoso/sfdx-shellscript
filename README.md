@@ -18,8 +18,8 @@ sfCommandListで、利用できるシェルの一覧と簡単な説明を表示�
 sfdx-project.json とか　force-appがあるフォルダ
 
 ## デプロイ,リトリーブ
-`retrieve : sfdx force:source:retrieve --manifest ./manifest/package.xml　の置き換え`   
-`deploy 10 ./force-app/main/default/class/ \*.cls : 10分以内に更新されたclsファイルをデプロイ`  
+`retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　の置き換え   
+`deploy 10 ./force-app/main/default/class/ \*.cls` : 10分以内に更新されたclsファイルをデプロイ    
   
 ## デバッグ系
 `sft` : `sfdx force:apex:log:tail` の置き換え  
