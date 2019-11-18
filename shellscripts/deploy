@@ -2,8 +2,8 @@
 
 echo $1
 echo $2
+echo $3
 set -eu
 date
-find $2 -type f -mmin -$1
-echo "xargs -t -I{}  sfdx force:source:deploy --sourcepath {}"
+find $2$3 -type f -mmin -$1 |xargs -t -I{}  sfdx force:source:deploy --sourcepath {}
 date
