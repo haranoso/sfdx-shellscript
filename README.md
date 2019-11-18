@@ -22,19 +22,19 @@ sfdx-project.json とか　force-appがあるフォルダ
 `deploy 10 ./force-app/main/default/class/ \*.cls : 10分以内に更新されたclsファイルをデプロイ`  
   
 ## デバッグ系
-`sft : sfdx force:apex:log:tail の置き換え`  
-`sftd : sfdx force:apex:log:tail |grep DEBUG --color=auto;`  
-`sftf : sfdx force:apex:log:tail | grep -e "FATAL" -e ": line" --color=auto;`  
+`sft` : `sfdx force:apex:log:tail` の置き換え  
+`sftd` : `sfdx force:apex:log:tail |grep DEBUG --color=auto;`  
+`sftf` : `sfdx force:apex:log:tail | grep -e "FATAL" -e ": line" --color=auto;`  
 
-`sfexec {ファイル} : 指定したファイルのApexコードを実行します。ファイルはパス指定`  
-`soql "{SOQL文}" : SOQL文を実行します。 soql "select id , name from Account"`  
-`getAPINAmes {カスタムオブジェクト}　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）`  
+`sfexec {ファイル}` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
+`soql "{SOQL文}"` : SOQL文を実行します。 `soql "select id , name from Account"`  
+`getAPINAmes {カスタムオブジェクト}`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
   
   
 ## テスト系
-`th {class名}　: テストを実行、結果表示します。（表示：human形式）`  
-`thc {class名}　: カバレッジ付きでテストを実行、結果表示します。（表示：human形式）`  
-`tt {class名} : テストを実行、結果表示します。（表示：tap形式）`  
-`ttc {class名}　: カバレッジ付きでテストを実行、結果表示します。（表示：tap形式）`  
+`th {class名}`　: テストを実行、結果表示します。（表示：human形式）  
+`thc {class名}`　: カバレッジ付きでテストを実行、結果表示します。（表示：human形式）  
+`tt {class名}` : テストを実行、結果表示します。（表示：tap形式）  
+`ttc {class名}`　: カバレッジ付きでテストを実行、結果表示します。（表示：tap形式）  
 
 
