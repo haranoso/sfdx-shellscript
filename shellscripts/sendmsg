@@ -24,7 +24,8 @@ fi
 # パイプの有無
 if [ -p /dev/stdin ]; then
 	tmp=$(mktemp)
-	cat - | sed -e "s/\"/\'/g" | perl -p -e "s/\n/\\n/" |sed -e 's/\\/\\\\/g' >>$tmp
+	# MESSAGE=`cat - | sed -e "s/\"/\'/g" | perl -p -e "s/\n/\\n/" |sed -e 's/\\/\\\\/g'`
+	cat - |sed -e 's/─/-/g'| sed -e "s/\"/\'/g" |sed -e 's/\\/\\\\/g' | perl -p -e "s/\n/\\n/"  >>$tmp
 	MESSAGE=`cat $tmp`
 	echo $MESSAGE 
 	rm $tmp
@@ -47,5 +48,5 @@ echo $payload >> $tmpfile
 cat $tmpfile > ./tmp.json
 
 # 送信
- curl -s -S -X POST -d @${tmpfile} ${URL}
+ curl -s -S -X POST --data-URLENCODE "${payload}" ${URL}
 rm $tmpfile
