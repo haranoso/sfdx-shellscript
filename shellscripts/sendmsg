@@ -38,7 +38,7 @@ fi
 payload="payload={
 	\"username\": \"$UNAME\",
 	\"icon_emoji\": \"${EMOJI}\",
-	\"text\": \"$MESSAGE\",
+	\"text\": \"$UNAME\n$MESSAGE\",
 	\"fallbcack\": \"$UNAMEがツイートしました。\"
 	,\"attachments\":[{\"text\":\"\"}]
 }"
