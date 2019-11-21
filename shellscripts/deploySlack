@@ -1,4 +1,11 @@
 #!/bin/bash
 set -eu
 ENV=`sfEI`
-deploy $1 $2 $3 2>&1 | sendMsg $ENV
+echo $#
+if [ $# -eq 3 ]; then
+    deploy $1 $2 $3 2>&1 | sendMsg $ENV
+elif [ $# -eq 2 ]; then
+    deploy $1 $2 2>&1 | sendMsg $ENV
+else
+    echo '引数の不一致'
+fi

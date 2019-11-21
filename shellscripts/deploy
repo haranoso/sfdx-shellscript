@@ -1,4 +1,13 @@
 #!/bin/bash
 
 set -eu
-find $2$3 -type f -mmin -$1 |xargs -t -I{}  sfdx force:source:deploy --sourcepath {}
+
+if [ $# -eq 3 ]; then
+    find $2$3 -type f -mmin -$1
+    find $2$3 -type f -mmin -$1 |xargs -t -I{}  sfdx force:source:deploy --sourcepath {}
+elif [ $# -eq 2 ]; then
+    find $2 -type f -mmin -$1
+    find $2 -type f -mmin -$1 |xargs -t -I{}  sfdx force:source:deploy --sourcepath {}
+else
+    echo '引数の不一致'
+fi
