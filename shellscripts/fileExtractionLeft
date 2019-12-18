@@ -3,6 +3,10 @@
  if [ $# != 4 ]; then
     echo "引数の数が間違っています！"
     echo "fileExtractionLeft {keyword} {LEFT_Dir} {Right_Dir} {save_dir}"
+    echo "-- need ignoreDir.conf file"
+    echo "format) "
+    echo "-x {ignore dir1} -x {ignore dir4}  -x {ignore dir3} ・・・"
+    echo "--"
     exit 1
 fi
 
