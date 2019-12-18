@@ -1,0 +1,31 @@
+ #/bin/bash
+ 
+ CONF=$1
+ LEFT=$2
+ RIGHT=$3
+ TO=$4
+ IGNORE=$(<./ignoreDir.conf)
+
+mkdir -p $TO
+
+# 一時ファイルを作る
+tmpfile=$(mktemp).tar
+echo $tmpfile
+
+# 生成した一時ファイルを削除する
+function rm_tmpfile {
+  [[ -f "$tmpfile" ]] && rm -f "$tmpfile"
+}
+# 正常終了したとき
+trap rm_tmpfile EXIT
+# 異常終了したとき
+trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
+
+
+tar -cvf $tmpfile --from-file /dev/null
+cd $2
+diff $LEFT $RIGHT -rq $IGNORE |grep $CONF |grep differ | sed -e "s:$LEFT::g" |awk '{system("tar -rvf '"${tmpfile}"' ."$2"" )}'
+diff $LEFT $RIGHT -rq $IGNORE |grep $CONF |grep Only | sed -e "s:$LEFT::g" | sed -e "s\: \/\g" |awk '{system("tar -rvf '"${tmpfile}"' ."$3"" )}'
+
+newFile=$TO/cmtBase.`date "+%Y%m%d_%H%M%S"`.tar
+cp $tmpfile $newFile 
