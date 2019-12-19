@@ -33,7 +33,7 @@ trap rm_tmpfile EXIT
 trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
 
 
-tar -cvf $tmpfile --from-file /dev/null
+tar -cvf $tmpfile  /dev/null
 cd $2
 diff $LEFT $RIGHT -rq $IGNORE |grep $CONF |grep differ | sed -e "s:$LEFT::g" |awk '{system("tar -rvf '"${tmpfile}"' ."$2"" )}'
 diff $LEFT $RIGHT -rq $IGNORE |grep $CONF |grep Only | sed -e "s:$LEFT::g" | sed -e "s\: \/\g" |awk '{system("tar -rvf '"${tmpfile}"' ."$3"" )}'
