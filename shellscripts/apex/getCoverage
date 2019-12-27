@@ -24,12 +24,12 @@ while (parser.nextToken() != null) {
             Decimal uncov = Decimal.valueOf(val6);
             if(cov+uncov>0){
                 Decimal total = cov+uncov;
-                Decimal dbl = (cov/total)*100;
-                String Check= dbl<75?'【NG】 ':'【OK】 ';
-                System.debug(Check+val+': '+String.valueOf(dbl)+'% ('+cov+'/'+total+')');
+                Decimal dbl = ((cov/total)*100).setscale(2);
+                String Check= dbl<75?'[NG] ':'[OK] ';
+                System.debug(Check+val+' : '+String.valueOf(dbl)+'% ('+cov+'/'+total+')');
             }
             else{
-                System.debug(【NG】 val+': 0%');
+                System.debug('[NG] '+ val+' : 0%');
             }
         }
     }
