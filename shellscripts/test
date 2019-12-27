@@ -1,4 +1,3 @@
 #!/bin/bash
 
-set -eu
-sfdx force:apex:test:run -n $1 -r human $2
+echo `date`

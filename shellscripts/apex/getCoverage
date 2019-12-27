@@ -16,10 +16,10 @@ while (parser.nextToken() != null) {
             parser.nextToken();
             parser.nextToken();
             parser.nextToken();
-            String val4 = parser.getText();//NumLinescovered
+            String val4 = parser.getText();
             parser.nextToken();
             parser.nextToken();
-            String val6 = parser.getText();//NumLinesUncovered
+            String val6 = parser.getText();
             Decimal cov = Decimal.valueOf(val4);
             Decimal uncov = Decimal.valueOf(val6);
             if(cov+uncov>0){
@@ -29,7 +29,7 @@ while (parser.nextToken() != null) {
                 System.debug(Check+val+': '+String.valueOf(dbl)+'% ('+cov+'/'+total+')');
             }
             else{
-                System.debug(val+': 0%【NG】');
+                System.debug(【NG】 val+': 0%');
             }
         }
     }

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eu
+echo `date`
+
+if [$# == 0]; then
+  echo 'pelase set test classname.'
+  exit 1
+fi
+sfdx force:apex:test:run -n $1 -r human $2
+
+echo `date`

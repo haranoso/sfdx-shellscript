@@ -1,4 +1,4 @@
-echo alias tt=\'sfdx force:apex:test:run -w 60 -r tap -n\' >> ~/.bashrc
-echo alias ttc=\'sfdx force:apex:test:run -w 60 -r tap -c -n\' >> ~/.bashrc
-echo alias th=\'sfdx force:apex:test:run -w 60 -r human -n\' >> ~/.bashrc
-echo alias thc=\'sfdx force:apex:test:run -w 60 -r human -c -n\' >> ~/.bashrc
+#echo alias tt=\'sfdx force:apex:test:run -w 60 -r tap -n\' >> ~/.bashrc
+#echo alias ttc=\'sfdx force:apex:test:run -w 60 -r tap -c -n\' >> ~/.bashrc
+#echo alias th=\'sfdx force:apex:test:run -w 60 -r human -n\' >> ~/.bashrc
+#echo alias thc=\'sfdx force:apex:test:run -w 60 -r human -c -n\' >> ~/.bashrc
