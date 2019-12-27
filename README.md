@@ -9,8 +9,11 @@ sfdxコマンド長すぎるので、短くしたい。ついでに便利に書�
 
 tt,ttc,th,thc:クラス名を指定してsfdx force:apex:test:runを実行します。
 h:human形式
+
 t:tap形式
+
 c:coverageをとる
+
 
 ローカルPC上に取得後、ダウンロードしたパスを~/.bashrcなどのPATHに追加してください。
 sfCommandListで、利用できるシェルの一覧と簡単な説明を表示します。
