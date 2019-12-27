@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eu
-
+echo $3
 if [ $# -eq 3 ]; then
     find $2$3 -type f -mmin -$1
     find $2$3 -type f -mmin -$1 |xargs -t -I{}  sfdx force:source:deploy --sourcepath {}

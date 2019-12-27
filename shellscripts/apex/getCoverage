@@ -1,0 +1,37 @@
+HttpRequest req = new HttpRequest();
+req.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionID());
+req.setHeader('Content-Type', 'application/json');
+req.setEndpoint(URL.getSalesforceBaseURL().toExternalForm()+'/services/data/v33.0/tooling/query/?q=Select+id,ApexClassorTrigger.Name,NumLinesCovered,NumLinesUncovered+from+ApexCodeCoverageAggregate');
+req.setMethod('GET');
+Http h = new Http();
+HttpResponse res = h.send(req);
+JSONParser parser = JSON.createParser(res.getBody());
+
+while (parser.nextToken() != null) {
+    if (parser.getCurrentToken() == JSONToken.FIELD_NAME){
+        String key = parser.getText();
+        if(key.equals('Name')){
+            parser.nextToken();
+            String val = parser.getText();
+            parser.nextToken();
+            parser.nextToken();
+            parser.nextToken();
+            String val4 = parser.getText();//NumLinescovered
+            parser.nextToken();
+            parser.nextToken();
+            String val6 = parser.getText();//NumLinesUncovered
+            Decimal cov = Decimal.valueOf(val4);
+            Decimal uncov = Decimal.valueOf(val6);
+            if(cov+uncov>0){
+                Decimal total = cov+uncov;
+                Decimal dbl = (cov/total)*100;
+                String Check= dbl<75?'【NG】 ':'【OK】 ';
+                System.debug(Check+val+': '+String.valueOf(dbl)+'% ('+cov+'/'+total+')');
+            }
+            else{
+                System.debug(val+': 0%【NG】');
+            }
+        }
+    }
+}
+
