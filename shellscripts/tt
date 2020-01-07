@@ -2,9 +2,5 @@
 
 set -eu
 
-if [$# == 0]; then
-  echo 'pelase set test classname.'
-  exit 1
-fi
-sfdx force:apex:test:run -n $1 -r tap $2
+sfdx force:apex:test:run -n $1 -r tap
 echo `date`
