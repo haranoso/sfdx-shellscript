@@ -1,13 +1,16 @@
 # sfdx-shellscript
 sfdxコマンドをラップするシェルスクリプト群
 
-windows環境　+　git-bash VSCodeで動かす前提です。
+windows環境　+　git-bash + VSCodeで動かす前提です。
 期待しているSalesforceの環境にログインできていることを確認したうえで実行してください。
 
 sfdxコマンド長すぎるので、短くしたい。ついでに便利に書き換えたいのでシェルで書いています。
 短くするだけならaliasでいいと思います。
 
-ローカルPC上に取得後、ダウンロードしたパスを~/.bashrcなどのPATHに追加してください。
+git bash上で、取得したshellscriptsフォルダに移動後、setupコマンドを実行することで、~/.bash_profileパスを通すようにしました。
+上記を実行しない場合はローカルPC上に取得後、ダウンロードしたパスを~/.bashrc、~/.bash_profileなどのPATHに追加してください。
+PATH=$PATH:{ダウンロードしたフォルダのフルパス。}
+
 sfCommandListで、利用できるシェルの一覧と簡単な説明を表示します。
 
 設定に問題がなければ、シェルコマンドの実行でsfdxコマンドが動作するはず。
@@ -27,7 +30,7 @@ sfdx-project.json とか　force-appがあるフォルダ
 `sftf` : `sfdx force:apex:log:tail | grep -e "FATAL" -e ": line" --color=auto;`  
 
 `sfexec {ファイル}` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
-`soql "{SOQL文}"` : SOQL文を実行します。 `soql "select id , name from Account"`  
+`soql "{SOQL文}"` : SOQL文を実行します。 `soql "select id , name from Account limit 10"`  
 `getAPINAmes {カスタムオブジェクト}`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
   
   
@@ -36,5 +39,7 @@ sfdx-project.json とか　force-appがあるフォルダ
 `thc {class名}`　: カバレッジ付きでテストを実行、結果表示します。（表示：human形式）  
 `tt {class名}` : テストを実行、結果表示します。（表示：tap形式）  
 `ttc {class名}`　: カバレッジ付きでテストを実行、結果表示します。（表示：tap形式）  
+`getCoverage `　: カバレッジ率を取得します。※カバレッジ付きでテスト実行した後でも期待したクラスのカバレッジ率が取れないことがあります。なぜ？
+
 
 
