@@ -1,4 +1,3 @@
 #!/bin/bash
-
 set -eu
 sfdx force:data:soql:query -r csv -q "$1" 

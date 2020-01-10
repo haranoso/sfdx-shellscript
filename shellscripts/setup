@@ -1,3 +1,5 @@
+#!/bin/bash
+set -eu
 SHELLPATH=`pwd`
 SETDATA=`cat ~/.bash_profile |grep $SHELLPATH`
 

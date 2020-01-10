@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -eu
 echo "start sfdx force:apex:log:tail | grep -e "FATAL" -e ": line""
 while : ;do sfdx force:apex:log:tail | grep -e "FATAL" -e ": line" --color=auto;done

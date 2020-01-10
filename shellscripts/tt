@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -eu
 
 sfdx force:apex:test:run -n $1 -r tap -w 60

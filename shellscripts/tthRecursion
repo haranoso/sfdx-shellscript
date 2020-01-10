@@ -1,4 +1,3 @@
 #!/bin/bash
-
 set -eu
 echo ls ./force-app/main/default/classes/$1.cls -l | sed -e 's/\.\/force-app\/main\/default\/classes\///g' |sed -e 's/\.cls//g' | awk '{print $9}' | xargs -n1 thc

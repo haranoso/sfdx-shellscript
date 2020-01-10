@@ -2,4 +2,3 @@
 set -eu
 ENV=`sfEI`
 tt $1 | sendmsg $ENV
-

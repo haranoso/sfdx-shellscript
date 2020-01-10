@@ -1,2 +1,3 @@
+#!/bin/bash
 set -eu
 sfdx force:org:list | grep \(U\) | awk '{print $2,$3}'

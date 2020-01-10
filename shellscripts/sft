@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -eu
 echo "start sfdx force:apex:log:tail"
 while : ;do sfdx force:apex:log:tail ;done

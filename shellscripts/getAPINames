@@ -1,6 +1,6 @@
 #!/bin/bash
-
 set -eu
+
 to=$(mktemp)
 function rm_tmpfile {
   [[ -f "$to" ]] && rm -f "$to"

@@ -1,6 +1,5 @@
 #!/bin/bash
 set -eu
-
 ENV=`sfEI`
 echo "start retrieve" | sendmsg $ENV
 retrieve
