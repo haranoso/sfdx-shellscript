@@ -29,7 +29,7 @@ sfdx-project.json とか　force-appがあるフォルダ
 `getCoverage `　: カバレッジ率を取得します。※カバレッジ付きでテスト実行した後でも期待したクラスのカバレッジ率が取れないことがあります。なぜ？
 
   
-## デバッグ系
+## ログ系
 `sft` : `sfdx force:apex:log:tail` の置き換え  
 `sftd` : `sfdx force:apex:log:tail |grep DEBUG --color=auto;`  
 `sftf` : `sfdx force:apex:log:tail | grep -e "FATAL" -e ": line" --color=auto;`  
