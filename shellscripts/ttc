@@ -6,5 +6,5 @@ set -eu
 #   echo 'pelase set test classname.'
 #   exit 1
 # fi
-sfdx force:apex:test:run -n $1 -r tap -c
+sfdx force:apex:test:run -n $1 -r tap -c -w 60
 echo `date`
