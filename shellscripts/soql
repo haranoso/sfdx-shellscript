@@ -1,3 +1,13 @@
 #!/bin/bash
 set -eu
-sfdx force:data:soql:query -r csv -q "$1" 
+
+if [ $# -eq 0 ]; then
+    echo "example --"
+    echo "soql 'select id , name from Account limit 10 order by createdDate desc'"
+    echo "soql 'select id , name from Account limit 10 order by createdDate desc' -r csv"
+    echo "soql 'select id , name from Account limit 10 order by createdDate desc' -r json"
+elif [ $# -eq 1 ]; then
+  sfdx force:data:soql:query -q "$1" -r csv
+else
+  sfdx force:data:soql:query -q "$@"
+fi
