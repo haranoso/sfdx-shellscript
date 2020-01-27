@@ -1,0 +1,11 @@
+Schema.SObjectType sot = Schema.getGlobalDescribe().get('__OBJECT_NAME__');
+Schema.DescribeSObjectResult dsr = sot.getDescribe();
+
+System.debug(sot.getDescribe().getName()+','+sot.getDescribe().getLabel());
+System.debug('-----------------------------------------');
+
+Map<String, Schema.SObjectField> fsMap = dsr.fields.getMap();
+for (Schema.SObjectField sof : fsMap.values()) {
+    Schema.DescribeFieldResult dfr = sof.getDescribe();
+    System.debug(dfr.getName()+','+dfr.getLabel()+','+dfr.getType());
+}

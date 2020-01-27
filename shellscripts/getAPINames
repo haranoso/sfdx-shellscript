@@ -14,5 +14,5 @@ dir=$(cd $(dirname $0); pwd)
 from=$dir/apex/getObjectAPIName
 
 cat $from |sed -e "s/__OBJECT_NAME__/$1/g" > $to
-sfdx force:apex:execute --apexcodefile $to |grep DEBUG | sed -e 's/.*|DEBUG|//g'
+sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'
 
