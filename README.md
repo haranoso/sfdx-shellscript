@@ -23,8 +23,9 @@ sfdx-project.json とか　force-appがあるフォルダ
 ## ユーティリティ系
 `sfexec {ファイル}` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
 `soql "{SOQL文}"` : SOQL文を実行します。 `soql "select id , name from Account limit 10"`  
-`getAPINAmes {カスタムオブジェクト}`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
-`retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　の置き換え   
+`getAPINames {カスタムオブジェクト}`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
+`getObjectInfo {カスタムオブジェクト}` : カスタムメタオブジェクトのAPI名と項目名、型を表示。（自分に参照権限があるもののみ。）  　
+`retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　の置き換え   　
 `deploy 10 ./force-app/main/default/class/ \*.cls` : 10分以内に更新されたclsファイルをデプロイ
 `getCoverage `　: カバレッジ率を取得します。※カバレッジ付きでテスト実行した後でも期待したクラスのカバレッジ率が取れないことがあります。なぜ？
 
