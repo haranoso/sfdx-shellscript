@@ -3,5 +3,5 @@
 set -eu
 dir=$(cd $(dirname $0); pwd)
 pathOfApex=$dir/apex/getCoverage
-sfdx force:apex:execute --apexcodefile $pathOfApex |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'
 
+sfdx force:apex:execute --apexcodefile $pathOfApex |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'
