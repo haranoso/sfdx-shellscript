@@ -9,8 +9,8 @@ sfdxコマンドをラップするシェルスクリプト群
 で動かす前提です。  
   
 ### ■Mac OS  
-1.VSCode  
-1.Sfdx Cli  
+1. VSCode  
+1. Sfdx Cli  
 で動かす前提です。  
   
 期待しているSalesforceの環境にログインできていることを確認したうえで実行してください。  
