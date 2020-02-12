@@ -7,8 +7,8 @@ windows環境　+　git-bash + VSCodeで動かす前提です。
 sfdxコマンド長すぎるので、短くしたい。ついでに便利に書き換えたいのでシェルで書いています。  
 短くするだけならaliasでいいと思います。  
 
-git bash上で、取得したshellscriptsフォルダに移動後、setupコマンドを実行することで、\~/.bash_profileパスを通すようにしました。  
-上記を実行しない場合はローカルPC上に取得後、ダウンロードしたパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。  
+git bash上で、取得したshellscriptsフォルダに移動後、`setup`コマンドを実行することで、\~/.bash_profileパスを通すようにしました。  
+上記を実行しない場合はローカルPC上に取得後、ダウンロードしたフォルダのパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。  
 PATH=$PATH:{ダウンロードしたフォルダのフルパス。}  
 .bash_profileが存在しない場合には、`touch ~/.bash_profile`でファイルを作成し、`PATH=$PATH`を書き込んで保存してください。  
 
