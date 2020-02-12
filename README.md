@@ -6,32 +6,38 @@ sfdxコマンドをラップするシェルスクリプト群
 1. Git Bash  
 1. VSCode  
 1. Sfdx Cli  
-で動かす前提です。  
   
 ### ■Mac OS  
 1. VSCode  
 1. Sfdx Cli  
-で動かす前提です。  
-  
+
+### ■Linux Commandの知識
+cd , ls , pwd などのコマンド知識。
+[WindowsでGitを始めたらまず確認！Git Bashの設定&ショートカット](https://www.granfairs.com/blog/staff/gitbash-setting-shortcut)
+[ブクマ必至！Linuxコマンド一覧表【全33種】](https://www.sejuku.net/blog/5465)
+
+## 注意事項
 期待しているSalesforceの環境にログインできていることを確認したうえで実行してください。  
 
-sfdxコマンド長すぎるので、短くしたい。ついでに便利に書き換えたいのでシェルで書いています。  
-短くするだけならaliasでいいと思います。  
+sfdxコマンド長すぎるので、短くしたい。ついでに機能を便利に書き換えたいのでシェルで書いています。  
+単純にキー入力を短くするだけならaliasでいいと思います。
 
-git bash上で、取得したshellscriptsフォルダに移動後、`setup`コマンドを実行することで、\~/.bash_profileパスを通すようにしました。  
-上記を実行しない場合はローカルPC上に取得後、ダウンロードしたフォルダのパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。  
-PATH=$PATH:{ダウンロードしたフォルダのフルパス。}  
-.bash_profileが存在しない場合には、`touch ~/.bash_profile`でファイルを作成し、`PATH=$PATH`を書き込んで保存してください。  
-
-`sfCommandList`で、利用できるシェルの一覧と簡単な説明を表示します。  
-  
 設定に問題がなければ、シェルコマンドの実行でsfdxコマンドが動作するはず。  
 ※本シェルを使用して起きるいかなる不具合もサポートできません。自己責任でお願いします。  
 
 コマンドはプロジェクトフォルダで実行する想定です。  
-sfdx-project.json とか　force-appがあるフォルダ  
+sfdx-project.json とか　force-appがあるフォルダです。  
 
-## ユーティリティ系
+## 導入方法
+git bash上で、取得したshellscriptsフォルダに移動後、`setup`コマンドを実行することで、\~/.bash_profileパスを通すようにしました。  
+上記を実行しない場合はローカルPC上に取得後、ダウンロードしたフォルダのパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。  
+`PATH=$PATH:{ダウンロードしたフォルダのフルパス。}`  
+.bash_profileが存在しない場合には、`touch ~/.bash_profile`でファイルを作成し、`PATH=$PATH`を書き込んで保存してください。  
+
+`sfCommandList`で、利用できるシェルの一覧と簡単な説明を表示します。  
+  
+
+### ユーティリティ系
 `sfexec {ファイル}` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
 `soql "{SOQL文}"` : SOQL文を実行します。 `soql "select id , name from Account limit 10"`  
 `getAPINames {カスタムオブジェクト}`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
