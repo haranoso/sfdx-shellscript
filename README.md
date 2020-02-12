@@ -1,7 +1,7 @@
 # sfdx-shellscript
 sfdxコマンドをラップするシェルスクリプト群
 
-■前提条件
+■前提条件  
   ■Windows  
     1.gitbash  
     2.VSCode  
