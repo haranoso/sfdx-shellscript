@@ -1,5 +1,7 @@
 # sfdx-shellscript
 sfdxコマンドをラップするシェルスクリプト群
+sfdxコマンドについては、[開発者が定時で帰るための8つのsfdxコマンド](https://base.terrasky.co.jp/articles/ilr7t)にも書きました。  
+上記を試している方向けです。
 
 ## ■前提条件  
 ### ■Windows  
