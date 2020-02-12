@@ -1,16 +1,16 @@
 # sfdx-shellscript
 sfdxコマンドをラップするシェルスクリプト群
 
-windows環境
-■Windows  
-  1.gitbash  
-  2.VSCode  
-  3.Sfdx Cli  
-  で動かす前提です。  
-■Mac OS  
-  1.VSCode  
-  2.Sfdx Cli  
-  で動かす前提です。  
+■前提条件
+  ■Windows  
+    1.gitbash  
+    2.VSCode  
+    3.Sfdx Cli  
+    で動かす前提です。  
+  ■Mac OS  
+    1.VSCode  
+    2.Sfdx Cli  
+    で動かす前提です。  
   
 期待しているSalesforceの環境にログインできていることを確認したうえで実行してください。  
 
