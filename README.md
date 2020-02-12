@@ -12,10 +12,11 @@ sfdxコマンドをラップするシェルスクリプト群
 1. Sfdx Cli  
 
 ### ■Linux Commandの知識
-cd , ls , pwd などのコマンド知識。
-[WindowsでGitを始めたらまず確認！Git Bashの設定&ショートカット](https://www.granfairs.com/blog/staff/gitbash-setting-shortcut)
-[ブクマ必至！Linuxコマンド一覧表【全33種】](https://www.sejuku.net/blog/5465)
-
+cd , ls , pwd などのコマンド知識。  
+[WindowsでGitを始めたらまず確認！Git Bashの設定&ショートカット](https://www.granfairs.com/blog/staff/gitbash-setting-shortcut)  
+[ブクマ必至！Linuxコマンド一覧表【全33種】](https://www.sejuku.net/blog/5465)  
+  
+  
 ## 注意事項
 期待しているSalesforceの環境にログインできていることを確認したうえで実行してください。  
 
