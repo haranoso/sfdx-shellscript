@@ -1,7 +1,17 @@
 # sfdx-shellscript
 sfdxコマンドをラップするシェルスクリプト群
 
-windows環境　+　git-bash + VSCodeで動かす前提です。  
+windows環境
+■Windows  
+  1.gitbash  
+  2.VSCode  
+  3.Sfdx Cli  
+  で動かす前提です。  
+■Mac OS  
+  1.VSCode  
+  2.Sfdx Cli  
+  で動かす前提です。  
+  
 期待しているSalesforceの環境にログインできていることを確認したうえで実行してください。  
 
 sfdxコマンド長すぎるので、短くしたい。ついでに便利に書き換えたいのでシェルで書いています。  
