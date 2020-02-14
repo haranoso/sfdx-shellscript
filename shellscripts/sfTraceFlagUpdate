@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$1'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`
+START=`date -u "+%Y-%m-%dT%H:%M:%S.000+0000"`
+
+sfdx force:data:record:update -t -s TraceFlag -i $ID -v "StartDate=$START ExpirationDate=''"

@@ -36,6 +36,7 @@ while (parser.nextToken() != null) {
             if(cov+uncov>0){
                 Decimal total = cov+uncov;
                 Decimal dbl = ((cov/total)*100).setscale(2);
+
                 String Check= dbl<75?'[NG] ':'[OK] ';
                 ret += Check+val+' : '+String.valueOf(dbl)+'% ('+cov+'/'+total+')¥n';
             }
