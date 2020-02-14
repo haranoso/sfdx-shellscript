@@ -48,7 +48,8 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
 `retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　の置き換え   
 `deploy 10 ./force-app/main/default/class/ \*.cls` : 10分以内に更新されたclsファイルをデプロイ  
 `getCoverage `　: カバレッジ率を取得します。  
-
+`sfTraceFlagUpdate [-i Id(User)] [-n Name]` 　:IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を現在時刻で更新します。
+  
   
 ## ログ系
 `sft` : `sfdx force:apex:log:tail` の置き換え  
