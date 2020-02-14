@@ -9,6 +9,9 @@ result += '-----------------------------------------¥n';
 Map<String, Schema.SObjectField> fsMap = dsr.fields.getMap();
 for (Schema.SObjectField sof : fsMap.values()) {
     Schema.DescribeFieldResult dfr = sof.getDescribe();
-    result += dfr.getName()+','+dfr.getLabel()+','+dfr.getType()+'¥n';
+    System.debug(dfr);
+    String ext = dfr.isExternalID()?',外部ID':'';
+    String unq = dfr.isUnique()?',ユニーク':'';
+    result += dfr.getName()+','+dfr.getLabel()+','+dfr.getType()+ext+unq+'¥n';
 }
 System.debug(result);

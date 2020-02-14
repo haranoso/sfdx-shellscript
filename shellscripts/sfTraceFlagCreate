@@ -1,0 +1,52 @@
+#!/bin/bash
+set -eu
+
+if [ $# -ne 4 ]; then
+  echo "指定された引数は$#個です。" 1>&2
+  echo "実行するには4個の引数が必要です。" 1>&2
+  exit 1;
+fi
+LOGTYPE='USER_DEBUG'
+
+for OPT in "$@"
+do
+  case $OPT in
+ #   -t ) 
+ #       if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+ #           echo "$PROGNAME: option requires an argument -- $1" 1>&2
+ #           exit 1
+ #       fi
+ #       LOGTYPE=$2
+    -d ) 
+        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+            echo "$PROGNAME: option requires an argument -- $1" 1>&2
+            exit 1
+        fi
+        DLID=`sfGetDebugLevelId $2`
+        shift 2
+        ;;
+            
+    -i )
+        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+            echo "$PROGNAME: option requires an argument -- $1" 1>&2
+            exit 1
+        fi 
+        ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`;;
+    -n ) 
+        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+            echo "$PROGNAME: option requires an argument -- $1" 1>&2
+            exit 1
+        fi
+        ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` ;;
+    --) shift 
+        exit 2 ;;
+  esac
+  shift
+done
+
+
+START=`date -u "+%Y-%m-%dT%H:%M:%S.000+0000"`
+
+sfdx force:data:record:create -t -s TraceFlag -v "DebugLevelId=$DLID StartDate=$START ExpirationDate='' LogType=$LOGTYPE TracedEntityId=$ID"
+
+exit 0;
