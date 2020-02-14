@@ -9,6 +9,6 @@ Map<String, Schema.SObjectField> fsMap = dsr.fields.getMap();
 for (Schema.SObjectField sof : fsMap.values()) {
     Schema.DescribeFieldResult dfr = sof.getDescribe();
     System.debug(dfr.getName()+','+dfr.getLabel()+','+dfr.getType());
-    result += dfr.getName()+','+dfr.getLabel()+','+dfr.getType()+'¥n'
+    result += dfr.getName()+','+dfr.getLabel()+','+dfr.getType()+'¥n';
 }
 System.debug(result);
