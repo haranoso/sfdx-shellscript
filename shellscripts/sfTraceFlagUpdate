@@ -1,7 +1,25 @@
 #!/bin/bash
 set -eu
 
-ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$1'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`
+if [ $# -ne 2 ]; then
+  echo "指定された引数は$#個です。" 1>&2
+  echo "実行するには2個の引数が必要です。" 1>&2
+  exit 1
+fi
+
+while getopts ni: OPT
+do
+  case $OPT in
+    "i" ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`;;
+    "n" ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` ;;
+      * ) echo "Usage: $CMDNAME [-ID VALUE] [-NAME VALUE] " 1>&2
+        exit 1 ;;
+  esac
+done
+
+
 START=`date -u "+%Y-%m-%dT%H:%M:%S.000+0000"`
 
 sfdx force:data:record:update -t -s TraceFlag -i $ID -v "StartDate=$START ExpirationDate=''"
+
+exit 0;
