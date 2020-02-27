@@ -7,6 +7,7 @@ if [ $# -ne 4 ]; then
   exit 1;
 fi
 LOGTYPE='USER_DEBUG'
+echo $@
 
 for OPT in "$@"
 do
@@ -18,6 +19,7 @@ do
  #       fi
  #       LOGTYPE=$2
     -d ) 
+    echo $2
         if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
             echo "$PROGNAME: option requires an argument -- $1" 1>&2
             exit 1
@@ -27,26 +29,26 @@ do
         ;;
             
     -i )
-        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+        if [[ -z "$1" ]] || [[ "$2" =~ ^-+ ]]; then
             echo "$PROGNAME: option requires an argument -- $1" 1>&2
             exit 1
         fi 
-        ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`;;
-    -n ) 
+        ID=`sfdx force:data:soql:query -q "select id from User where Id='$2'"  -r csv| tail -1 `;;
+    -N )
+    echo $2
         if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
             echo "$PROGNAME: option requires an argument -- $1" 1>&2
             exit 1
         fi
-        ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` ;;
+        ID=`sfdx force:data:soql:query -q "select id from User where Name='$2'" -r csv| tail -1 `;;
+
     --) shift 
         exit 2 ;;
   esac
-  shift
 done
 
 
 START=`date -u "+%Y-%m-%dT%H:%M:%S.000+0000"`
-
 sfdx force:data:record:create -t -s TraceFlag -v "DebugLevelId=$DLID StartDate=$START ExpirationDate='' LogType=$LOGTYPE TracedEntityId=$ID"
 
 exit 0;
