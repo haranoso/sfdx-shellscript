@@ -48,8 +48,10 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
 `retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　の置き換え   
 `deploy 10 ./force-app/main/default/class/ \*.cls` : 10分以内に更新されたclsファイルをデプロイ  
 `getCoverage `　: get Coverage rate. カバレッジ率を取得します。  
-`sfTraceFlagUpdate [-i Id(User)] [-n Name]`:update TraceFlag. IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を現在時刻で更新します。  
-`sfTraceFlagCreate [-d DebugLevel Name][-i Id(User)] [-N Name]`:create TraceFlag. IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を、-dで指定したDebugLevelかつ現在時刻で作成します。  
+`sfTraceFlagCreate [-d DebugLevel Name][-i Id(User)] [-N Name]`:create TraceFlag. 
+　　　　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を、-dで指定したDebugLevelかつ現在時刻で作成します。  
+`sfTraceFlagUpdate [-i Id(User)] [-n Name]`:update TraceFlag.
+　　　　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を現在時刻で更新します。  
 `sfRemoveLogs [-i Id(User)] [-N Name]`:remove ApexLogs. IDまたはNameで指定したApexLogを削除します。
   
   
