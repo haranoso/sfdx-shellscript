@@ -10,7 +10,7 @@
 set -eu
 
 if [ $# -ne 2 ]; then
-	UNAME="BOT"
+	UNAME="[:sushi:BOT]"
 else
 	UNAME="[ $1 ] $2 "
 fi
