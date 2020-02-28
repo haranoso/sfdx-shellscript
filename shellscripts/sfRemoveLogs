@@ -1,0 +1,27 @@
+#!/bin/bash
+set -eu
+
+if [ $# -ne 2 ]; then
+  echo "指定された引数は$#個です。" 1>&2
+  echo "実行するには2個の引数が必要です。" 1>&2
+  exit 1
+fi
+
+for OPT in "$@"
+do
+  case $OPT in
+    -N )
+        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+            echo "$PROGNAME: option requires an argument -- $1" 1>&2
+            exit 1
+        fi
+        ID=`sfdx force:data:soql:query -q "select id from User where Name='$2'" -r csv| tail -1 `;;
+
+    --) shift 
+        exit 2 ;;
+  esac
+done
+
+sfdx force:data:record:delete -t -s Apexlog -w "logUserId=$ID"
+
+exit 0;

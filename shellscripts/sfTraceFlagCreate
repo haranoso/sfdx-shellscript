@@ -7,19 +7,12 @@ if [ $# -ne 4 ]; then
   exit 1;
 fi
 LOGTYPE='USER_DEBUG'
-echo $@
 
 for OPT in "$@"
 do
   case $OPT in
- #   -t ) 
- #       if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
- #           echo "$PROGNAME: option requires an argument -- $1" 1>&2
- #           exit 1
- #       fi
- #       LOGTYPE=$2
+
     -d ) 
-    echo $2
         if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
             echo "$PROGNAME: option requires an argument -- $1" 1>&2
             exit 1
@@ -35,7 +28,6 @@ do
         fi 
         ID=`sfdx force:data:soql:query -q "select id from User where Id='$2'"  -r csv| tail -1 `;;
     -N )
-    echo $2
         if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
             echo "$PROGNAME: option requires an argument -- $1" 1>&2
             exit 1
