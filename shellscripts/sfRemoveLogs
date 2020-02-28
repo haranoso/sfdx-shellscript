@@ -10,6 +10,12 @@ fi
 for OPT in "$@"
 do
   case $OPT in
+    -i )
+        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+            echo "$PROGNAME: option requires an argument -- $1" 1>&2
+            exit 1
+        fi
+        ID=$2;;
     -N )
         if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
             echo "$PROGNAME: option requires an argument -- $1" 1>&2
@@ -21,9 +27,11 @@ do
         exit 2 ;;
   esac
 done
+
 tmpfile=$(mktemp)
 sfdx force:data:soql:query -q "select id from ApexLog where logUserId='$ID'" -r csv > tmpfile
 sfdx force:data:bulk:delete -s Apexlog -f tmpfile
+
 
 # 生成した一時ファイルを削除する
 function rm_tmpfile {
