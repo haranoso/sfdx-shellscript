@@ -21,7 +21,16 @@ do
         exit 2 ;;
   esac
 done
+tmpfile=$(mktemp)
+sfdx force:data:soql:query -q "select id from ApexLog where logUserId='$ID'" -r csv > tmpfile
+sfdx force:data:bulk:delete -s Apexlog -f tmpfile
 
-sfdx force:data:record:delete -t -s Apexlog -w "logUserId=$ID"
-
+# 生成した一時ファイルを削除する
+function rm_tmpfile {
+  [[ -f "$tmpfile" ]] && rm -f "$tmpfile"
+}
+# 正常終了したとき
+trap rm_tmpfile EXIT
+# 異常終了したとき
+trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
 exit 0;
