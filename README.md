@@ -62,9 +62,9 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
   
   
 ## テスト系
-`th [testClassName],[･･･]`　: テストを実行、結果表示します。（表示：human形式）  
-`thc [testClassName],[･･･]`　: カバレッジ付きでテストを実行、結果表示します。（表示：human形式）  
-`tt [testClassName],[･･･]` : テストを実行、結果表示します。（表示：tap形式）  
-`ttc [testClassName],[･･･]･`　: カバレッジ付きでテストを実行、結果表示します。（表示：tap形式）  
+`th {testClassName,･･･}`　: テストを実行、結果表示します。（表示：human形式）  
+`thc {testClassName,･･･}`　: カバレッジ付きでテストを実行、結果表示します。（表示：human形式）  
+`tt {testClassName,･･･}` : テストを実行、結果表示します。（表示：tap形式）  
+`ttc {testClassName,･･･}`　: カバレッジ付きでテストを実行、結果表示します。（表示：tap形式）  
 
 
