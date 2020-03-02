@@ -42,7 +42,7 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
 
 ### ユーティリティ系
 `sfexec <filepath>` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
-`soql <soql query>` : SOQL文を実行します。 `soql "select id , name from Account limit 10"`  
+`soql <soql query>` : SOQL文を実行します。 `soql "select id , name from Account where Name='test' limit 10"`  
 `getAPINames <sObjectName>`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
 `getObjectInfo <sObjectName>` : カスタムメタオブジェクトのAPI名と項目名、型を表示。（自分に参照権限があるもののみ。）    
 `retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　の置き換え   
