@@ -41,18 +41,18 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
   
 
 ### ユーティリティ系
-`sfexec [filepath]` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
-`soql ["soql query"]` : SOQL文を実行します。 `soql "select id , name from Account limit 10"`  
-`getAPINames [sObjectName]`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
-`getObjectInfo [sObjectName]` : カスタムメタオブジェクトのAPI名と項目名、型を表示。（自分に参照権限があるもののみ。）    
+`sfexec <filepath>` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
+`soql <soql query>` : SOQL文を実行します。 `soql "select id , name from Account limit 10"`  
+`getAPINames <sObjectName>`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
+`getObjectInfo <sObjectName>` : カスタムメタオブジェクトのAPI名と項目名、型を表示。（自分に参照権限があるもののみ。）    
 `retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　の置き換え   
 `deploy 10 ./force-app/main/default/class/ \*.cls` : 10分以内に更新されたclsファイルをデプロイ  
 `getCoverage `　: get Coverage rate. カバレッジ率を取得します。  
-`sfTraceFlagCreate [-d DebugLevel Name][-i Id(User)] [-N Name]`:create TraceFlag.   
+`sfTraceFlagCreate {-d <DebugLevel Name>} {-i <User Id> | -N <User Name> }`:create TraceFlag.   
 　　　　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を、-dで指定したDebugLevelかつ現在時刻で作成します。  
-`sfTraceFlagUpdate [-i Id(User)] [-n Name]`:update TraceFlag.  
+`sfTraceFlagUpdate {-i <UserId> | -n <Name> } `:update TraceFlag.  
 　　　　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を現在時刻で更新します。  
-`sfRemoveLogs [-i Id(User)] [-N Name]`:remove ApexLogs. IDまたはNameで指定したApexLogを削除します。  
+`sfRemoveLogs {-i <UserId> | -N <UserName>}`:remove ApexLogs. IDまたはNameで指定したApexLogを削除します。  
 `sendmsg`:send message to Slack channel. `echo 'hogehoge' | sendmsg`でSlackのChannel上にメッセージを送信します。    
   
 ## ログ系
