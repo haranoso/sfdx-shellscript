@@ -1,5 +1,5 @@
 #!/bin/bash
 set -eu
-echo `date`
+echo 'start retrieve :: '`date`
 sfdx force:source:retrieve --manifest ./manifest/package.xml
-date
+echo 'finish retrieve :: '`date`
