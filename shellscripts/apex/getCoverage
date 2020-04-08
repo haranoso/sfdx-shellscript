@@ -5,6 +5,7 @@ req.setEndpoint(URL.getSalesforceBaseURL().toExternalForm()+'/services/data/v48.
 req.setMethod('GET');
 Http h = new Http();
 HttpResponse res = h.send(req);
+
 JSONParser parser = JSON.createParser(res.getBody());
 
 String ret = '';
@@ -46,4 +47,4 @@ while (parser.nextToken() != null) {
         }
     }
 }
-System.debug(ret);
+//System.debug(ret);

@@ -1,0 +1,41 @@
+HttpRequest req = new HttpRequest();
+req.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionID());
+req.setHeader('Content-Type', 'application/json');
+req.setEndpoint(URL.getSalesforceBaseURL().toExternalForm()+'/services/data/v48.0/tooling/query/?q=Select+id,ApexClassorTrigger.Name,Coverage+from+ApexCodeCoverageAggregate+where+ApexClassorTrigger.Name=\''+'__CLASS_NAME__'+'\'+order+by+lastModifiedDate+asc');
+req.setMethod('GET');
+Http h = new Http();
+HttpResponse res = h.send(req);
+
+JSONParser parser = JSON.createParser(res.getBody());
+String ret = '';
+while (parser.nextToken() != null) {
+    if (parser.getCurrentToken() == JSONToken.FIELD_NAME){
+        String key = parser.getText();
+        if(key.equals('coveredLines')){
+            ret = key;
+            while(parser.nextToken() != null){
+                String val = parser.getText();
+                if(val.equals('uncoveredLines')){
+                    ret+='¥nuncoveredLines';
+                    while(parser.nextToken() != null){
+                        val = parser.getText();
+                        if(val.equals('}')){
+                            System.debug(ret);
+                            return;
+                        }else{
+                            if(val.equals(']')||val.equals('[')){}
+                            else{
+                                ret+=','+val;
+                            }
+                        }
+                    }
+                }else{
+                    if(val.equals(']')||val.equals('[')){}
+                    else{
+                        ret+=','+val;
+                    }
+                }
+            }
+        }
+    }
+}
