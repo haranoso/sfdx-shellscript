@@ -5,6 +5,7 @@ set -eu
 dir=$(cd $(dirname $0); pwd)
 
 if [ $# -eq 0 ]; then
+echo "get All Class Coverage."
     pathOfApex=$dir/apex/getCoverage
     sfdx force:apex:execute --apexcodefile $pathOfApex |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
 elif [ $# -eq 1 ]; then
