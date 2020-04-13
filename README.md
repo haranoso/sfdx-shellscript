@@ -51,7 +51,7 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
 　　　　　　　　-d:指定したクラスのカバレッジ状況（行番号）を表示します。
 　　　　　　　　-i:指定したクラスのカバレッジ率を表示します。  
 　　　　　　　　-a:全てのクラスのカバレッジ率を表示します。  
-`sfGetDebugLevelId <Debuglevel Name>}`:get DebugLevel Id by Debug level Name. "sfGetDebugLevelId SFDC_DevConsole"
+`sfGetDebugLevelId <Debuglevel Name>}`:get DebugLevel Id by Debug level Name. "sfGetDebugLevelId -d SFDC_DevConsole"
 `sfTraceFlagCreate {-d <DebugLevel Name>} {-i <User Id> | -N <User Name> }`:create TraceFlag.   
 　　　　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を、-dで指定したDebugLevelかつ現在時刻で作成します。  
 `sfTraceFlagUpdate {-i <UserId> | -n <Name> } `:update TraceFlag.  
