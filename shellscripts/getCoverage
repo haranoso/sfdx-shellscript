@@ -4,23 +4,57 @@ set -eu
 
 dir=$(cd $(dirname $0); pwd)
 
-if [ $# -eq 0 ]; then
-echo "get All Class Coverage."
-    pathOfApex=$dir/apex/getCoverage
-    sfdx force:apex:execute --apexcodefile $pathOfApex |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
-elif [ $# -eq 1 ]; then
-    to=$(mktemp)
-    function rm_tmpfile {
-    [[ -f "$to" ]] && rm -f "$to"
-    }
-    # 正常終了したとき
-    trap rm_tmpfile EXIT
-    # 異常終了したとき
-    trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
-    from=$dir/apex/getCoverageDetail
-    cat $from |sed -e "s/__CLASS_NAME__/$1/g" > $to
-    sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
-fi
+for OPT in "$@"
+do
+  case $OPT in
+
+    -d ) 
+        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+            echo "$PROGNAME: option requires an argument -- $1" 1>&2
+            exit 1
+        fi
+        to=$(mktemp)
+        function rm_tmpfile {
+            [[ -f "$to" ]] && rm -f "$to"
+        }
+        # 正常終了したとき
+        trap rm_tmpfile EXIT
+        # 異常終了したとき
+        trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
+        from=$dir/apex/getCoverageDetail
+        cat $from |sed -e "s/__CLASS_NAME__/$2/g" > $to
+        sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
+        shift 2
+        ;;
+            
+    -i )
+        if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+            echo "$PROGNAME: option requires an argument -- $1" 1>&2
+            exit 1
+        fi
+        to=$(mktemp)
+        function rm_tmpfile {
+            [[ -f "$to" ]] && rm -f "$to"
+        }
+        # 正常終了したとき
+        trap rm_tmpfile EXIT
+        # 異常終了したとき
+        trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
+        from=$dir/apex/getCoverageInfo
+        cat $from |sed -e "s/__CLASS_NAME__/$2/g" > $to
+        sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
+        shift 2
+        ;;
+    -a )
+        pathOfApex=$dir/apex/getCoverage
+        sfdx force:apex:execute --apexcodefile $pathOfApex |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
+        shift 2
+        ;;
+
+    --) shift 
+        exit 2 ;;
+  esac
+done
 
 
 

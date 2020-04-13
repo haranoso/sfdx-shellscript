@@ -1,7 +1,7 @@
 HttpRequest req = new HttpRequest();
 req.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionID());
 req.setHeader('Content-Type', 'application/json');
-req.setEndpoint(URL.getSalesforceBaseURL().toExternalForm()+'/services/data/v48.0/tooling/query/?q=Select+id,ApexClassorTrigger.Name,NumLinesCovered,NumLinesUncovered+from+ApexCodeCoverageAggregate+order+by+lastModifiedDate+asc');
+req.setEndpoint(URL.getSalesforceBaseURL().toExternalForm()+'/services/data/v48.0/tooling/query/?q=Select+id,ApexClassorTrigger.Name,NumLinesCovered,NumLinesUncovered+from+ApexCodeCoverageAggregate+where+ApexClassorTrigger.Name=\''+'__CLASS_NAME__'+'\'+order+by+lastModifiedDate+asc');
 req.setMethod('GET');
 Http h = new Http();
 HttpResponse res = h.send(req);

@@ -5,18 +5,20 @@ req.setEndpoint(URL.getSalesforceBaseURL().toExternalForm()+'/services/data/v48.
 req.setMethod('GET');
 Http h = new Http();
 HttpResponse res = h.send(req);
+Boolean bf1=false;
+Boolean bf2=false;
 
 JSONParser parser = JSON.createParser(res.getBody());
-String ret = '';
+String ret = '>> __CLASS_NAME__¥n';
 while (parser.nextToken() != null) {
     if (parser.getCurrentToken() == JSONToken.FIELD_NAME){
         String key = parser.getText();
         if(key.equals('coveredLines')){
-            ret = key;
+            ret += '  c:';
             while(parser.nextToken() != null){
                 String val = parser.getText();
                 if(val.equals('uncoveredLines')){
-                    ret+='¥nuncoveredLines';
+                    ret+='¥n  u:';
                     while(parser.nextToken() != null){
                         val = parser.getText();
                         if(val.equals('}')){
@@ -25,14 +27,16 @@ while (parser.nextToken() != null) {
                         }else{
                             if(val.equals(']')||val.equals('[')){}
                             else{
-                                ret+=','+val;
+                                ret += bf2?','+val:val;
+                                bf2=true;
                             }
                         }
                     }
                 }else{
                     if(val.equals(']')||val.equals('[')){}
                     else{
-                        ret+=','+val;
+                        ret+=bf1?','+val:val;
+                        bf1=true;
                     }
                 }
             }
