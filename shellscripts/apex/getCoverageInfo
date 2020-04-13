@@ -29,10 +29,10 @@ while (parser.nextToken() != null) {
                 Decimal dbl = ((cov/total)*100).setscale(2);
 
                 String Check= dbl<75?'[NG] ':'[OK] ';
-                ret += Check+val+' : '+String.valueOf(dbl)+'% ('+cov+'/'+total+')¥n';
+                ret += Check+val+' : '+String.valueOf(dbl)+'% ('+cov+'/'+total+')';
             }
             else{
-                ret+='[NG] '+ val+' : 0%¥n';
+                ret+='[NG] '+ val+' : 0%';
             }
         }
     }
