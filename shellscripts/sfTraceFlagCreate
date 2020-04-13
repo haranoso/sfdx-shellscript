@@ -1,12 +1,14 @@
 #!/bin/bash
 set -eu
 
-if [ $# -ne 4 ]; then
-  echo "指定された引数は$#個です。" 1>&2
-  echo "実行するには4個の引数が必要です。" 1>&2
+LOGTYPE='USER_DEBUG'
+if [ $# -eq 0 ]; then
+echo "  sfTraceFlagCreate {-d ”SFDC_DevConsole”} {-N ”<ユーザ名>” | -i ”<ユーザID>”} "
+echo "    : -d <デバッグレベル名>:[設定]-[デバッグログ]画面から確認できる「デバッグレベル名」、もしくは[新しいデバッグレベル]画面で設定した「名前」"
+echo "    : -N ”<ユーザ名>”:ユーザ名　User.Name"
+echo "    : -i  -i ”<ユーザID>”:ユーザId　User.Id" 
   exit 1;
 fi
-LOGTYPE='USER_DEBUG'
 
 for OPT in "$@"
 do
@@ -17,7 +19,7 @@ do
             echo "$PROGNAME: option requires an argument -- $1" 1>&2
             exit 1
         fi
-        DLID=`sfGetDebugLevelId $2`
+        DLID=`sfGetDebugLevelId -d $2`
         shift 2
         ;;
             
@@ -33,7 +35,12 @@ do
             exit 1
         fi
         ID=`sfdx force:data:soql:query -q "select id from User where Name='$2'" -r csv| tail -1 `;;
-
+    -h )
+echo "  sfTraceFlagCreate {-d ”SFDC_DevConsole”} {-N ”<ユーザ名>” | -i ”<ユーザID>”} "
+echo "    : -d <デバッグレベル名>:[設定]-[デバッグログ]画面から確認できる「デバッグレベル名」、もしくは[新しいデバッグレベル]画面で設定した「名前」"
+echo "    : -N ”<ユーザ名>”:ユーザ名　User.Name"
+echo "    : -i  -i ”<ユーザID>”:ユーザId　User.Id"
+shift 2;;
     --) shift 
         exit 2 ;;
   esac

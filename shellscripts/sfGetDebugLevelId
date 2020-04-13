@@ -1,18 +1,41 @@
 #!/bin/bash
 set -eu
 
-to=$(mktemp)
-function rm_tmpfile {
-  [[ -f "$to" ]] && rm -f "$to"
-}
-# 正常終了したとき
-trap rm_tmpfile EXIT
-# 異常終了したとき
-trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
+if [ $# -eq 0 ]; then
+echo "  sfGetDebugLevelId {-d ”<デバッグレベル名>”}"
+echo "    :   デバッグレベル名で特定されるDebugLevelのIdを取得する。"
+echo "    :   -d <デバッグレベル名>:[設定]-[デバッグログ]画面から確認できる「デバッグレベル名」、もしくは[新しいデバッグレベル]画面で設定した「名前」"
+echo ""
+  exit 1;
+fi
 
-dir=$(cd $(dirname $0); pwd)
-from=$dir/apex/getDebugLevel
+for OPT in "$@"
+do
+  case $OPT in
 
-cat $from |sed -e "s/__OBJECT_NAME__/$1/g" > $to
-sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG  | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
+    -d ) 
+      to=$(mktemp)
+      function rm_tmpfile {
+        [[ -f "$to" ]] && rm -f "$to"
+      }
+      # 正常終了したとき
+      trap rm_tmpfile EXIT
+      # 異常終了したとき
+      trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
 
+      dir=$(cd $(dirname $0); pwd)
+      from=$dir/apex/getDebugLevel
+
+      cat $from |sed -e "s/__OBJECT_NAME__/$1/g" > $to
+      sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG  | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
+      shift 2;;
+    -h )
+      echo "  sfGetDebugLevelId {-d ”<デバッグレベル名>”}"
+      echo "    : デバッグレベル名で特定されるDebugLevelのIdを取得する。"
+      echo "    : -d <デバッグレベル名>:[設定]-[デバッグログ]画面から確認できる「デバッグレベル名」、もしくは[新しいデバッグレベル]画面で設定した「名前」"
+      echo ""
+      shift 2;;
+    --) shift 
+        exit 2 ;;
+  esac
+done

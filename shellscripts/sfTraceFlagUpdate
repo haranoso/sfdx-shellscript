@@ -1,19 +1,29 @@
 #!/bin/bash
 set -eu
-
-if [ $# -ne 2 ]; then
-  echo "指定された引数は$#個です。" 1>&2
-  echo "実行するには2個の引数が必要です。" 1>&2
-  exit 1
+if [ $# -eq 0 ]; then
+echo "  sfTraceFlagUpdate {-N ”<ユーザ名>”｜-i ”<ユーザID>” >"
+echo "    : デバッグ用の追跡フラグをユーザ名またはID指定で更新する。実行時から２４時間"
+echo "    : -N ”<ユーザ名>”:ユーザ名　User.Name"
+echo "    : -i  -i ”<ユーザID>”:ユーザId　User.Id"  
+  exit 1;
 fi
 
-while getopts ni: OPT
+for OPT in "$@"
 do
   case $OPT in
-    "i" ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`;;
-    "n" ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` ;;
-      * ) echo "Usage: $CMDNAME [-ID VALUE] [-NAME VALUE] " 1>&2
-        exit 1 ;;
+    -i ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`
+    shift 2;;
+    -n ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` 
+    shift 2;;
+    -h )
+echo "  sfTraceFlagUpdate {-N ”<ユーザ名>”｜-i ”<ユーザID>” >"
+echo "    : デバッグ用の追跡フラグをユーザ名またはID指定で更新する。実行時から２４時間"
+echo "    : -N ”<ユーザ名>”:ユーザ名　User.Name"
+echo "    : -i  -i ”<ユーザID>”:ユーザId　User.Id"  
+    shift 2;;
+    --)
+    shift
+    exit 2;
   esac
 done
 

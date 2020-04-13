@@ -3,6 +3,14 @@
 set -eu
 
 dir=$(cd $(dirname $0); pwd)
+if [ $# -eq 0 ]; then
+        echo "  getCoverage {-d ”<Apexクラス名>” | -i ”<Apexクラス名>” | -a } "
+        echo "    : カバレッジ率、カバレッジ行の情報を取得する。"
+        echo "    : -a:全クラスのカバレッジ率を取得する。"
+        echo "    : -i　”<Apexクラス名>”:指定したクラスのカバレッジ率を取得する。"
+        echo "    : -d　”<Apexクラス名>”:指定したクラスのカバレッジ行（c：通過／u:非通過）を取得する。"
+  exit 1;
+fi
 
 for OPT in "$@"
 do
@@ -50,7 +58,14 @@ do
         sfdx force:apex:execute --apexcodefile $pathOfApex |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
         shift 2
         ;;
-
+    -h)
+        echo "  getCoverage {-d ”<Apexクラス名>” | -i ”<Apexクラス名>” | -a } "
+        echo "    : カバレッジ率、カバレッジ行の情報を取得する。"
+        echo "    : -a:全クラスのカバレッジ率を取得する。"
+        echo "    : -i　”<Apexクラス名>”:指定したクラスのカバレッジ率を取得する。"
+        echo "    : -d　”<Apexクラス名>”:指定したクラスのカバレッジ行（c：通過／u:非通過）を取得する。"
+        shift 2
+        ;;
     --) shift 
         exit 2 ;;
   esac
