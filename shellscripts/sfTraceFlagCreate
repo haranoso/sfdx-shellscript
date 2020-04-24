@@ -46,7 +46,6 @@ shift 2;;
   esac
 done
 
-
 START=`date -u "+%Y-%m-%dT%H:%M:%S.000+0000"`
 sfdx force:data:record:create -t -s TraceFlag -v "DebugLevelId=$DLID StartDate=$START ExpirationDate='' LogType=$LOGTYPE TracedEntityId=$ID"
 

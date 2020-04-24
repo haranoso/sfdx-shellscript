@@ -26,7 +26,7 @@ do
       dir=$(cd $(dirname $0); pwd)
       from=$dir/apex/getDebugLevel
 
-      cat $from |sed -e "s/__OBJECT_NAME__/$1/g" > $to
+      cat $from |sed -e "s/__OBJECT_NAME__/$2/g" > $to
       sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG  | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
       shift 2;;
     -h )
