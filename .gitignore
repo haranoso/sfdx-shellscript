@@ -1,3 +1,4 @@
+shellscripts/.bash_profile
 shellscripts/slack.conf
 shellscripts/translate
 shsfdx.code-workspace
