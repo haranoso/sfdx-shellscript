@@ -14,14 +14,16 @@ do
   case $OPT in
     -i ) ID=$2
     shift 2;;
-    -I ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`
+    -I ) 
+    ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`
     shift 2;;
     -N ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` 
     shift 2;;
     -h )
 echo "  sfTraceFlagUpdate {-i ”<デバッグログId>”|　-N ”<ユーザ名>”｜-I ”<ユーザID>” >"
 echo "    : デバッグ用の追跡フラグをユーザ名またはID指定で更新する。実行時から２４時間"
-echo "    : -i  -i ”<TraceFlag>”:デバッグログId　Id"  
+echo "    : TraceFlagが複数件登録済みの場合は、エラーになるので、削除するかデバッグId指定で実行する"
+echo "    : -i  -i ”<TraceFlag>”:デバッグId　Id"  
 echo "    : -N ”<ユーザ名>”:ユーザ名　User.Name"
 echo "    : -I  -I ”<ユーザID>”:ユーザId　User.Id"  
     shift 2;;

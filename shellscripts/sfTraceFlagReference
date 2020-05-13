@@ -2,9 +2,9 @@
 set -eu
 
 if [ $# -eq 0 ]; then
-echo "  sfTraceFlagReference {-d ”<デバッグレベル名>”}"
-echo "    :   "
-echo "    :   "
+echo "  sfTraceFlagReference {-I ”<ユーザID>” | -N "ユーザ名"}"
+echo "    : -N ”<ユーザ名>”:ユーザ名　User.Name"
+echo "    : -I  -I ”<ユーザID>”:ユーザId　User.Id"  
 echo ""
   exit 1;
 fi
@@ -12,8 +12,23 @@ fi
 for OPT in "$@"
 do
   case $OPT in
+    -I )
+      to=$(mktemp)
+      function rm_tmpfile {
+        [[ -f "$to" ]] && rm -f "$to"
+      }
+      # 正常終了したとき
+      trap rm_tmpfile EXIT
+      # 異常終了したとき
+      trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
 
-    -d ) 
+      dir=$(cd $(dirname $0); pwd)
+      from=$dir/apex/getTraceFlagsbyId
+      PARAM=`echo "${2// /+}"`
+      cat $from |sed -e "s/__OBJECT_NAME__/$PARAM/g" > $to
+      sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG  | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
+      shift 2;;
+    -N ) 
       to=$(mktemp)
       function rm_tmpfile {
         [[ -f "$to" ]] && rm -f "$to"
@@ -25,14 +40,14 @@ do
 
       dir=$(cd $(dirname $0); pwd)
       from=$dir/apex/getTraceFlags
-
-      cat $from |sed -e "s/__OBJECT_NAME__/$2/g" > $to
+      PARAM=`echo "${2// /+}"`
+      cat $from |sed -e "s/__OBJECT_NAME__/$PARAM/g" > $to
       sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG  | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
       shift 2;;
     -h )
-      echo "  sfTraceFlagReference {-d ”<デバッグレベル名>”}"
-      echo "    :"
-      echo "    : "
+echo "  sfTraceFlagReference {-I ”<ユーザID>” | -N "ユーザ名"}"
+echo "    : -N ”<ユーザ名>”:ユーザ名　User.Name"
+echo "    : -I  -I ”<ユーザID>”:ユーザId　User.Id"  
       echo ""
       shift 2;;
     --) shift 
