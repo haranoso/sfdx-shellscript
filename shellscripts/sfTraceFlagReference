@@ -1,0 +1,41 @@
+#!/bin/bash
+set -eu
+
+if [ $# -eq 0 ]; then
+echo "  sfTraceFlagReference {-d ”<デバッグレベル名>”}"
+echo "    :   "
+echo "    :   "
+echo ""
+  exit 1;
+fi
+
+for OPT in "$@"
+do
+  case $OPT in
+
+    -d ) 
+      to=$(mktemp)
+      function rm_tmpfile {
+        [[ -f "$to" ]] && rm -f "$to"
+      }
+      # 正常終了したとき
+      trap rm_tmpfile EXIT
+      # 異常終了したとき
+      trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
+
+      dir=$(cd $(dirname $0); pwd)
+      from=$dir/apex/getTraceFlags
+
+      cat $from |sed -e "s/__OBJECT_NAME__/$2/g" > $to
+      sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG  | sed -e 's/.*|DEBUG|//g'| sed 's/\¥n/\'$'\n/g'
+      shift 2;;
+    -h )
+      echo "  sfTraceFlagReference {-d ”<デバッグレベル名>”}"
+      echo "    :"
+      echo "    : "
+      echo ""
+      shift 2;;
+    --) shift 
+        exit 2 ;;
+  esac
+done

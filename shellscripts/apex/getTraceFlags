@@ -1,0 +1,19 @@
+HttpRequest req = new HttpRequest();
+req.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionID());
+req.setHeader('Content-Type', 'application/json');
+req.setEndpoint(URL.getSalesforceBaseURL().toExternalForm()+'/services/data/v47.0/tooling/query/?q=Select+id,TracedEntity.Name+TracedEntityId+from+TraceFlag+where+TracedEntity.Name=\'__OBJECT_NAME__\'+order+by+lastModifiedDate+asc');
+req.setMethod('GET');
+Http h = new Http();
+HttpResponse res = h.send(req);
+JSONParser parser = JSON.createParser(res.getBody());
+String ret = '';
+while (parser.nextToken() != null) {
+    if (parser.getCurrentToken() == JSONToken.FIELD_NAME){
+        String key = parser.getText();
+        if(key.equals('Id')){
+            parser.nextToken();
+            ret = parser.getText();
+        }
+    }
+}
+System.debug(ret);
