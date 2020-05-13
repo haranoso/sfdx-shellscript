@@ -13,7 +13,7 @@ do
   case $OPT in
     -i ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntityId='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'`
     shift 2;;
-    -n ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` 
+    -N ) ID=`sfdx force:data:record:get -t -s TraceFlag -w "TracedEntity.Name='$2'" |grep -e ^Id: |sed -e 's/Id://g' -e 's/\"//g'` 
     shift 2;;
     -h )
 echo "  sfTraceFlagUpdate {-N ”<ユーザ名>”｜-i ”<ユーザID>” >"
