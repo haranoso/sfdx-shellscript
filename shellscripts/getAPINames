@@ -11,8 +11,47 @@ trap rm_tmpfile EXIT
 trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
 
 dir=$(cd $(dirname $0); pwd)
-from=$dir/apex/getObjectAPIName
+if [ $# -eq 0 ]; then
+        echo "  getCoverage {-d ”<Apexクラス名>” | -i ”<Apexクラス名>” | -a } "
+        echo "    : カバレッジ率、カバレッジ行の情報を取得する。"
+        echo "    : -a:全クラスのカバレッジ率を取得する。"
+        echo "    : -i　”<Apexクラス名>”:指定したクラスのカバレッジ率を取得する。"
+        echo "    : -d　”<Apexクラス名>”:指定したクラスのカバレッジ行（c：通過／u:非通過）を取得する。"
+  exit 1;
+fi
 
-cat $from |sed -e "s/__OBJECT_NAME__/$1/g" > $to
-sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g'
+for OPT in "$@"
+do
+  case $OPT in
+
+    -l ) 
+        from=$dir/apex/getObjectAPIName
+        obj=$2
+        shift 2
+        ;;
+    -c ) 
+        from=$dir/apex/getCSVformatData
+        obj=$2
+        shift 2
+        ;;
+    -i ) 
+        from=$dir/apex/getObjectInfo
+        obj=$2
+        shift 2
+        ;;
+
+     -h)
+        echo "  getObjectInfo {-l | -c | -i } "
+        echo "    : API名を取得する。"
+        echo "    : -l:API名のみ列挙する"
+        echo "    : -c:API名のみCSV形式で表示する。＊最終カラムに余計なカンマがつく"
+        echo "    : -i:情報つきで列挙する"
+        shift 2
+        ;;
+    --) shift 
+        exit 2 ;;
+  esac
+done   
+cat $from |sed -e "s/__OBJECT_NAME__/$obj/g" > $to
+sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g' | sed 's/\¥n/\'$'\n/g'
 
