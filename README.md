@@ -32,8 +32,8 @@ sfdxコマンド長すぎるので、短くしたい。ついでに機能を便�
 sfdx-project.json とか　force-appがあるフォルダです。  
 
 ## 導入方法
-git bash上で、取得したshellscriptsフォルダに移動後、`setup`コマンドを実行することで、\~/.bash_profileパスを通すようにしました。  
-上記を実行しない場合はローカルPC上に取得後、ダウンロードしたフォルダのパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。  
+git bash上で、取得したshellscriptsフォルダに移動後、`setup`コマンドを実行することで、\~/.bash_profileにパスを通すようにしました。   
+うまく動作しない場合はローカルPC上に取得後、ダウンロードしたフォルダのパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。    
 `PATH=$PATH:{ダウンロードしたフォルダのフルパス。}`  
 .bash_profileが存在しない場合には、`touch ~/.bash_profile`でファイルを作成し、`PATH=$PATH`を書き込んで保存してください。  
 
