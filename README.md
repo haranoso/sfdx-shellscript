@@ -1,7 +1,7 @@
 # sfdx-shellscript
 sfdxコマンドをラップするシェルスクリプト群  
-sfdxコマンドについては、[開発者が定時で帰るための8つのsfdxコマンド](https://base.terrasky.co.jp/articles/ilr7t)にも書きました。    
-上記を試している方向けに用意しているつもりです。
+使い勝手を良くするためのコマンドを作っています。
+WindowsではGitBashからの利用を、またはMacのターミナルからの利用を想定しています。
 
 ## ■前提条件  
 ### ■Windows  
