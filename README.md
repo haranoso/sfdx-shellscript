@@ -61,8 +61,8 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
 　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を、-dで指定したDebugLevelかつ現在時刻で作成します。    
 `sfTraceFlagUpdate {-i <ID> | -I <UserId> | -N <Name> } `:update TraceFlag.    
 　　　　　ID(TraceFlag)またはUserIDまたはUser.Name項目で特定できるデバッグログの追跡フラグ（TraceFlag）を現在時刻で更新します。    
-`sfRemoveLogs {-i <UserId> | -N <UserName>}`:remove ApexLogs. 　  　
-　　　　　IDまたはNameで指定したApexLogを削除します。    
+`sfRemoveLogs {-i <UserId> | -N <UserName>}`:remove ApexLogs.    　
+　　　　　IDまたはNameで指定したApexLogを削除します。      
 `sendmsg`:send message to Slack channel.   
 　　　　　`echo 'hogehoge' | sendmsg`でSlackのChannel上にメッセージを送信します。    
   
