@@ -43,28 +43,28 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
 ### ユーティリティ系
 `sfexec <filepath>` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
 `soql <soql query>` : SOQL文を実行します。  
-　　　　　　`soql "select id , name from Account where Name='test' limit 10"`  
-`getObjectInfo {-I | -a | -N} <sObjectName>`　:　
-　　　　　　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）    
+　　　　　`soql "select id , name from Account where Name='test' limit 10"`  
+`getObjectInfo {-I | -a | -N} <sObjectName>`　:  
+　　　　　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）    
 `retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　  
-　　　　　　/manifest/package.xmlでメタデータを取得します。  
+　　　　　/manifest/package.xmlでメタデータを取得します。  
 `deploy 10 ./force-app/main/default/class/ \*.cls` : 10分以内に更新されたclsファイルをデプロイ    
 `getCoverage {-d <ClassName> | -i <ClassName> | -a }`　: get Coverage rate. カバレッジ率を取得します。    
-　　　　　　-d:指定したクラスのカバレッジ状況（行番号）を表示します。  
-　　　　　　-i:指定したクラスのカバレッジ率を表示します。  
-　　　　　　-a:全てのクラスのカバレッジ率を表示します。  
+　　　　　-d:指定したクラスのカバレッジ状況（行番号）を表示します。  
+　　　　　-i:指定したクラスのカバレッジ率を表示します。  
+　　　　　-a:全てのクラスのカバレッジ率を表示します。  
 `sfGetDebugLevelId <Debuglevel Name>}`:DebugLevelIdをDebug level Name指定で取得します。  
-　　　　　　"sfGetDebugLevelId -d SFDC_DevConsole"  
+　　　　　"sfGetDebugLevelId -d SFDC_DevConsole"  
 `sfTraceFlagReference {-I <UserId> | -N <Name> } `:reference TraceFlagId.    
-　　　　　　UserIDまたはUser.Name項目で特定できるデバッグログの追跡フラグ（TraceFlag）のIDを取得します。    
+　　　　　UserIDまたはUser.Name項目で特定できるデバッグログの追跡フラグ（TraceFlag）のIDを取得します。    
 `sfTraceFlagCreate {-d <DebugLevel Name>} {-i <User Id> | -N <User Name> }`:create TraceFlag.     
-　　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を、-dで指定したDebugLevelかつ現在時刻で作成します。    
+　　　　　IDまたはName項目で特定できるデバッグログの追跡フラグ（TraceFlag）を、-dで指定したDebugLevelかつ現在時刻で作成します。    
 `sfTraceFlagUpdate {-i <ID> | -I <UserId> | -N <Name> } `:update TraceFlag.    
-　　　　　　ID(TraceFlag)またはUserIDまたはUser.Name項目で特定できるデバッグログの追跡フラグ（TraceFlag）を現在時刻で更新します。    
+　　　　　ID(TraceFlag)またはUserIDまたはUser.Name項目で特定できるデバッグログの追跡フラグ（TraceFlag）を現在時刻で更新します。    
 `sfRemoveLogs {-i <UserId> | -N <UserName>}`:remove ApexLogs. 　  　
-　　　　　　IDまたはNameで指定したApexLogを削除します。    
+　　　　　IDまたはNameで指定したApexLogを削除します。    
 `sendmsg`:send message to Slack channel.   
-　　　　　　`echo 'hogehoge' | sendmsg`でSlackのChannel上にメッセージを送信します。    
+　　　　　`echo 'hogehoge' | sendmsg`でSlackのChannel上にメッセージを送信します。    
   
 ## ログ系
 `sft` : `sfdx force:apex:log:tail` replace command.  
