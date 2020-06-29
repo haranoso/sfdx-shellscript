@@ -12,11 +12,11 @@ trap 'trap - EXIT; rm_tmpfile; exit -1' INT PIPE TERM
 
 dir=$(cd $(dirname $0); pwd)
 if [ $# -eq 0 ]; then
-        echo "  getCoverage {-d ”<Apexクラス名>” | -i ”<Apexクラス名>” | -a } "
-        echo "    : カバレッジ率、カバレッジ行の情報を取得する。"
-        echo "    : -a:全クラスのカバレッジ率を取得する。"
-        echo "    : -i　”<Apexクラス名>”:指定したクラスのカバレッジ率を取得する。"
-        echo "    : -d　”<Apexクラス名>”:指定したクラスのカバレッジ行（c：通過／u:非通過）を取得する。"
+        echo "  getObjectInfo {-l | -c | -i } "
+        echo "    : API名を取得する。"
+        echo "    : -l:API名のみ列挙する"
+        echo "    : -c:API名のみCSV形式で表示する。＊最終カラムに余計なカンマがつく"
+        echo "    : -i:情報つきで列挙する"
   exit 1;
 fi
 
