@@ -1,7 +1,7 @@
 # sfdx-shellscript
 sfdxコマンドをラップするシェルスクリプト群  
-sfdxコマンドについては、[開発者が定時で帰るための8つのsfdxコマンド](https://base.terrasky.co.jp/articles/ilr7t)にも書きました。    
-上記を試している方向けに用意しているつもりです。
+使い勝手を良くするためのコマンドを作っています。
+WindowsではGitBashからの利用を、またはMacのターミナルからの利用を想定しています。
 
 ## ■前提条件  
 ### ■Windows  
@@ -32,8 +32,8 @@ sfdxコマンド長すぎるので、短くしたい。ついでに機能を便�
 sfdx-project.json とか　force-appがあるフォルダです。  
 
 ## 導入方法
-git bash上で、取得したshellscriptsフォルダに移動後、`setup`コマンドを実行することで、\~/.bash_profileパスを通すようにしました。  
-上記を実行しない場合はローカルPC上に取得後、ダウンロードしたフォルダのパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。  
+git bash上で、取得したshellscriptsフォルダに移動後、`setup`コマンドを実行することで、\~/.bash_profileにパスを通すようにしました。   
+うまく動作しない場合はローカルPC上に取得後、ダウンロードしたフォルダのパスを\~/.bashrc、\~/.bash_profileなどのPATHに追加してください。    
 `PATH=$PATH:{ダウンロードしたフォルダのフルパス。}`  
 .bash_profileが存在しない場合には、`touch ~/.bash_profile`でファイルを作成し、`PATH=$PATH`を書き込んで保存してください。  
 
@@ -43,8 +43,7 @@ git bash上で、取得したshellscriptsフォルダに移動後、`setup`コ�
 ### ユーティリティ系
 `sfexec <filepath>` : 指定したファイルのApexコードを実行します。ファイルはパス指定  
 `soql <soql query>` : SOQL文を実行します。 `soql "select id , name from Account where Name='test' limit 10"`  
-`getAPINames <sObjectName>`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
-`getObjectInfo <sObjectName>` : カスタムメタオブジェクトのAPI名と項目名、型を表示。（自分に参照権限があるもののみ。）    
+`getObjectInfo {-I | -a | -N} <sObjectName>`　:　カスタムメタオブジェクトのAPI名を一覧表示。（自分に参照権限があるもののみ。）  
 `retrieve` : `sfdx force:source:retrieve --manifest ./manifest/package.xml`　指定されたpackage.xmlでメタデータを取得します。
 `deploy 10 ./force-app/main/default/class/ \*.cls` : 10分以内に更新されたclsファイルをデプロイ  
 `getCoverage {-d <ClassName> | -i <ClassName> | -a }`　: get Coverage rate. カバレッジ率を取得します。  
