@@ -54,4 +54,3 @@ do
 done   
 cat $from |sed -e "s/__OBJECT_NAME__/$obj/g" > $to
 sfdx force:apex:execute --apexcodefile $to |grep USER_DEBUG | sed -e 's/.*|DEBUG|//g' | sed 's/\¥n/\'$'\n/g'
-
